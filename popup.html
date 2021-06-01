@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="plugin.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <p id="error"></p>
+    <p id="itemname"></p>
+    <div id="item-container">
+      <span id="seller"></span>
+      <span id="itmid"></span>
+    </div>
+
+    <div id="display-label"></div>
+
+    <div id="notes">
+      <p>
+         <span> <b class='bld'> Notes: </b></span> 
+         <span id="notebody"></span>
+      </p>
+    </div>
+    <div class="form__group" id="desc-frm">
+      <textarea id="desc" class="form__field" placeholder="Your Message" rows="2"></textarea>
+      <label for="desc" class="form__label">Enter Your Notes Here</label>
+    </div>
+
+    <div class="cntr" id="cntr">
+  
+      <label for="opt1" class="radio l1">
+        <input type="radio" name="rdo" id="opt1" class="radio-input"/>
+        <span class="label"></span>Watch List
+      </label>
+      
+      <label for="opt2" class="radio lft l2">
+        <input type="radio" name="rdo" id="opt2" class="radio-input"/>
+        <span class="label"></span> Last Resort
+      </label>
+      
+      <label for="opt3" class="radio lft l3">
+        <input type="radio" name="rdo" id="opt3" class="radio-input"/>
+        <span class="label"></span> Hard Pass
+      </label>
+    </div>
+  
+    </br>
+
+    <button id="save" type="button"> <span>Save</span></button>
+    <p id="download"> Download Notes </p>
+    <script src="popup.js"></script>
+  </body>
+</html>

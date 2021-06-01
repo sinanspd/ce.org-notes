@@ -1,0 +1,289 @@
+body{
+  width: 430px;
+}
+
+*{
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Save button */
+button {
+  height: 40px;
+  width: 100px;
+  margin-bottom: 10px;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+}
+
+#save{
+  position:  relative;
+  margin-right: 100%;
+  margin-top: 5%;
+  float: left;
+}
+
+/* Download  Link  */  
+#download{
+  float: right;
+  margin-top: -30px;
+}
+
+#github, #download{
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+
+.bld{
+  font-size: 1.1em;
+  font-weight: bolder;
+}
+
+#itemname, #item-container{
+  font-size: 1.2em;
+}
+
+#itmid{
+  margin-left: 10%;
+}
+
+#error{
+  display: none;
+  font-size: 1.3em;
+  color: red;
+}
+
+#notebody{
+  color: black;
+  font-size: 1.2em;
+}
+
+#notes{
+  display: none;
+}
+
+/* Display Label Styling */
+
+#display-label{
+  display: none; 
+  position: relative;
+  padding: 0;
+
+  margin-top: 3%;
+
+  overflow: hidden;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  
+  background-color: #3f51b5;
+  color: #ecf0f1;
+  font-weight: bolder;
+  font-size: 1.2em;
+
+  width: 120px;
+  height: 30px;
+}
+
+#display-label span {
+  display: block;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Material Design Styling For The Radio Buttons */
+
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #d2d2d2;
+  outline: 0;
+  font-size: 16px;
+  color: #212121;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+  color: transparent;
+}
+
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 16px;
+  cursor: text;
+  top: 20px;
+}
+
+label,
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 12px;
+  color: #9b9b9b;
+}
+
+.form__field:focus ~ .form__label {
+  color: #009788;
+}
+
+.form__field:focus {
+  padding-bottom: 6px;
+  border-bottom: 2px solid #009788;
+}
+
+.cntr{
+  margin-top: 5%;
+}
+
+.lft{
+  margin-left: 20px !important;
+}
+.radio {
+  position: relative;
+  cursor: pointer;
+  line-height: 20px;
+  font-size: 14px;
+  margin: 3px;
+  float: left;
+}
+.radio .label {
+  position: relative;
+  display: block;
+  float: left;
+  margin-right: 10px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #c8ccd4;
+  border-radius: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.radio .label:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 100%;
+  transform: scale(0);
+  transition: all 0.2s ease;
+  opacity: 0.08;
+  pointer-events: none;
+}
+.radio:hover .label:after {
+  transform: scale(3.6);
+}
+
+.l1 .label:after{
+  background: #2ccb13;
+}
+
+.l2 .label:after{
+  background: #e48c07;
+}
+
+.l3 .label:after{
+  background: #f70707;
+}
+
+.l1 input[type="radio"]:checked + .label {
+  border-color: #2ccb13;
+}
+
+.l2 input[type="radio"]:checked + .label {
+  border-color: #e48c07;
+}
+
+.l3 input[type="radio"]:checked + .label {
+  border-color: #f70707;
+}
+
+input[type="radio"]:checked + .label:after {
+  transform: scale(1);
+  transition: all 0.2s cubic-bezier(0.35, 0.9, 0.4, 0.9);
+  opacity: 1;
+}
+
+.radio-input {
+  display: none;
+}
+
+/* Material Design Styling For The Save Button, Class added dynamically */
+
+.btn {
+  position: relative;
+
+  display: block;
+  margin: 30px auto;
+  padding: 0;
+
+  overflow: hidden;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  
+  background-color: #3f51b5;
+  color: #ecf0f1;
+  
+  transition: background-color .3s;
+  cursor: pointer;
+}
+
+.btn:hover, .btn:focus {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.btn > *, #display-label > *  {
+  position: relative;
+}
+
+.btn span{
+  display: block;
+  padding: 12px 24px;
+}
+
+.btn:before {
+  content: "";
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  display: block;
+  width: 0;
+  padding-top: 0;
+    
+  border-radius: 100%;
+  
+  background-color: rgba(236, 240, 241, .3);
+  
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+  width: 120%;
+  padding-top: 120%;
+  
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
