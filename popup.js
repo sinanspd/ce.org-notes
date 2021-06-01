@@ -100,7 +100,7 @@ function displayErrorMessage(){
   error.innerHTML = notEbayErrorMessage;
   let github= document.getElementById("github")
   github.addEventListener("click", async () => {
-    var newURL = "http://github.com/";
+    var newURL = "https://github.com/sinanspd/ce.org-notes";
     chrome.tabs.create({ url: newURL });
   });
 }
