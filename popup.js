@@ -48,12 +48,12 @@ Array.from(categoryButtons).forEach(e =>
  * @param {*} n note to display 
  */
 function setViewToNoteView(n){
-  document.getElementById("desc-frm").style.display = "none"
-  document.getElementById("cntr").style.display = "none"
-  document.getElementById("notes").style.display = "block"
+  document.getElementById("desc-frm").style.display = "none";
+  document.getElementById("cntr").style.display = "none";
+  document.getElementById("notes").style.display = "block";
   document.getElementById("display-label").style.display = "block";
-  document.getElementById("notebody").innerHTML =  n
-  saveBtt.style.display = "none"
+  document.getElementById("notebody").innerHTML =  n;
+  saveBtt.style.display = "none";
 }
 
 /**
@@ -61,7 +61,7 @@ function setViewToNoteView(n){
  * @returns if at least one option is checked
  */
 function isChecked(){
-  return document.getElementById("opt1").checked || document.getElementById("opt2").checked || document.getElementById("opt3").checked
+  return document.getElementById("opt1").checked || document.getElementById("opt2").checked || document.getElementById("opt3").checked;
 }
 
 /**
@@ -69,7 +69,7 @@ function isChecked(){
  * @returns Can submit the form
  */
 function canSubmit(){
-  return isChecked() && document.getElementById("desc").value.length > 0
+  return isChecked() && document.getElementById("desc").value.length > 0;
 }
 
 /**
@@ -92,11 +92,11 @@ function downloadData(){
  */
 function displayErrorMessage(){
   let error = document.getElementById("error");
-  document.getElementById("desc").style.display = "none"
-  document.getElementById("save").style.display = "none"
-  document.getElementById("desc-frm").style.display = "none"
-  document.getElementById("cntr").style.display = "none"
-  error.style.display = "block"
+  document.getElementById("desc").style.display = "none";
+  document.getElementById("save").style.display = "none";
+  document.getElementById("desc-frm").style.display = "none";
+  document.getElementById("cntr").style.display = "none";
+  error.style.display = "block";
   error.innerHTML = notEbayErrorMessage;
   let github= document.getElementById("github")
   github.addEventListener("click", async () => {
@@ -112,12 +112,16 @@ function displayErrorMessage(){
 function setDisplayLabel(ct){
   let color = (ct ==  category1) ?
                category1Color : (ct == category2) ? category2Color : category3Color;
-  document.getElementById("display-label").style.backgroundColor = color 
-  document.getElementById("display-label").innerHTML = "<span>" + ct + "</span>"
+  document.getElementById("display-label").style.backgroundColor = color;
+  document.getElementById("display-label").innerHTML = "<span>" + ct + "</span>";
 }
 
 function makeBoldText(text){
-  return  "<b class='bld'>"  + text + " </b> " 
+  return  "<b class='bld'>"  + text + " </b> ";
+}
+
+function compareItems(item1, item2){
+  return (item1.id == item2.id && item1.seller == item2.seller) || (item1.item === item2.item && item1.seller == item2.seller);
 }
 
 async function save(){
@@ -133,9 +137,9 @@ async function save(){
             let opt2 = document.getElementById("opt2");
             let category = (opt1.checked) ? category1 : (opt2.checked) ? category2 : category3;
             let notes = document.getElementById("desc").value;
-            let filtered = itemsL.filter(i => i.id == results[0].result.id);
+            let filtered = itemsL.filter(i => compareItems(i, results[0].result));
             if(filtered.length > 0){
-              itemsL = itemsL.filter(i => i.id != results[0].result.id);
+              itemsL = itemsL.filter(i => !compareItems(i, results[0].result));
             }
             itemsL.push({
               id: results[0].result.id,
@@ -155,7 +159,7 @@ async function save(){
 
 chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}, 
   function(tabs){
-    let currenturl = tabs[0].url
+    let currenturl = tabs[0].url;
     if(!currenturl.includes("ebay")){
       displayErrorMessage();
     }else{
@@ -168,14 +172,14 @@ chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}
           let seller = document.getElementById("seller");
           let itemId = document.getElementById("itmid");
 
-          itemname.innerHTML = makeBoldText("Item: ") + results[0].result.item
-          seller.innerHTML = makeBoldText("Seller: ") + results[0].result.seller
-          itemId.innerHTML = makeBoldText("Id: ")  + results[0].result.id
+          itemname.innerHTML = makeBoldText("Item: ") + results[0].result.item;
+          seller.innerHTML = makeBoldText("Seller: ") + results[0].result.seller;
+          itemId.innerHTML = makeBoldText("Id: ") + results[0].result.id;
           if(result.items){
-            let fltr = result.items.filter(i => i.id == results[0].result.id)
+            let fltr = result.items.filter(i => compareItems(i, results[0].result));
             if(fltr.length >  0){
               setDisplayLabel(fltr[0].category);
-              setViewToNoteView(fltr[0].desc)
+              setViewToNoteView(fltr[0].desc);
             }
           }
       });

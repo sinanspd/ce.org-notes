@@ -1,6 +1,6 @@
 {
   "name": "CE.org Notes",
-  "description": "A plugin to help to take notes on eBay listings witout adding them to the watchlist. Meant for collectors to note down the flaws they have observed. Why doesn't Ebay already have this functionality?",
+  "description": "A plugin to take notes on eBay listings without adding them to the watchlist. Why doesn't Ebay already have this functionality?",
   "version": "1.0",
   "manifest_version": 3,
   "permissions": ["storage", "activeTab", "scripting", "tabs", "downloads"],
