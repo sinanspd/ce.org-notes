@@ -90,14 +90,14 @@ function downloadData(){
 /**
  * Display error messaging stating the current page isn't ebay
  */
-function displayErrorMessage(){
+function displayErrorMessage(msg){
   let error = document.getElementById("error");
   document.getElementById("desc").style.display = "none";
   document.getElementById("save").style.display = "none";
   document.getElementById("desc-frm").style.display = "none";
   document.getElementById("cntr").style.display = "none";
   error.style.display = "block";
-  error.innerHTML = notEbayErrorMessage;
+  error.innerHTML = msg;
   let github= document.getElementById("github")
   github.addEventListener("click", async () => {
     var newURL = "https://github.com/sinanspd/ce.org-notes";
@@ -146,7 +146,8 @@ async function save(){
               seller: results[0].result.seller, 
               item: results[0].result.item, 
               desc: notes, 
-              category: category
+              category: category,
+              url: tabs[0].url
             });
             setDisplayLabel(category);
             chrome.storage.local.set({items: itemsL}, function (result){
@@ -157,11 +158,17 @@ async function save(){
   })
 }
 
+
 chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}, 
   function(tabs){
     let currenturl = tabs[0].url;
     if(!currenturl.includes("ebay")){
-      displayErrorMessage();
+      displayErrorMessage(notEbayErrorMessage);
+    }else if(currenturl.includes("ebay") && !currenturl.includes("/itm")){
+      chrome.scripting.executeScript( {
+        target: {tabId: tabs[0].id},
+        files: ["appendscript.js"],
+      }, (results) => {displayErrorMessage("Items are labeled on page while browsing the search results. Click on an item to see the notes.");})
     }else{
       chrome.storage.local.get(["items"], function (result) {
         chrome.scripting.executeScript( {
